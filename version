@@ -1,2 +1,1360 @@
+
 <!DOCTYPE html>
-<b>0.01<b>
+<html i18n-values="
+    dir:textdirection;
+    hasattribution:hasattribution;
+    themegravity:themegravity;
+    bookmarkbarattached:bookmarkbarattached;" class="starting-up dark-mode">
+
+<head>
+	<meta charset="utf-8">
+	<title i18n-content="title"></title>
+	<link rel="icon"
+		href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAMVJREFUeNpi/P//PwMlgJFiA4CY+ffv360sLCy6cEFGxiCgwetQFKKJ/fnz5zIrK2s1C5DNBtQsAqTvI6nnQ+NjiEH1sDGB2ED8A00xOxbXoouB9LCAvMANxCJQGgS+AvE3IOYiQuwNyAB2LP6NBIotJ0IsiAXqhftYnEuMGAsoDJiJ8C8uMeZhEgZML168eEhqGED1MIG8wAnEQkDMCxIgMgz+AfFnIH7HCNXEDvUKiP8XlNShfFgMoYv9h/J/UpwbAQIMAMxlXQ8joosZAAAAAElFTkSuQmCC" />
+	<!-- Don't scale the viewport in either portrait or landscape mode.
+     Note that this means apps will be reflowed when rotated (like iPad).
+     If we wanted to maintain position we could remove 'maximum-scale' so
+     that we'd zoom out in portrait mode, but then there would be a bunch
+     of unusable space at the bottom.
+-->
+	<meta name="viewport" content="user-scalable=no, width=device-width, maximum-scale=1.0">
+	<!--if expr="pp_ifdef('touchui')">
+<script>
+document.documentElement.setAttribute('touchui', true);
+</script>
+</if-->
+	<!-- added by 360 -->
+	<script type="text/javascript">
+		var saveMostVisitedPageListTimes = 0;
+
+		function resetTilePagePaddingTop() {
+			var winHeight = window.innerHeight,
+				winWidth = window.innerWidth,
+				navPagePaddingTop = appsPagePaddingTop = '100px',
+				navLinkWrapMarginTop = navWeatherWrapMarginTop = '65px';
+
+			if (winHeight <= 615) {
+				navPagePaddingTop = appsPagePaddingTop = '40px';
+				navLinkWrapMarginTop = navWeatherWrapMarginTop = '15px';
+			} else if (winHeight <= 900) {
+				navPagePaddingTop = appsPagePaddingTop = '60px';
+				if (screen.availWidth == 1366) {
+					navPagePaddingTop = appsPagePaddingTop = '40px';
+				}
+			}
+			if (document.querySelectorAll('.nav-page')[0])
+				document.querySelectorAll('.nav-page')[0].lastChild.style.paddingTop = navPagePaddingTop;
+			if (document.querySelectorAll('.nav_weather_wrap')[0])
+				document.querySelectorAll('.nav_weather_wrap')[0].style.marginTop = navWeatherWrapMarginTop;
+			if (document.querySelectorAll('.nav_link_wrap')[0])
+				document.querySelectorAll('.nav_link_wrap')[0].style.marginTop = navLinkWrapMarginTop;
+			try {
+				document.querySelectorAll('.apps-page')[0].lastChild.style.paddingTop = appsPagePaddingTop;
+			} catch (e) {}
+		}
+	</script>
+	<link id="themecss" rel="stylesheet">
+	<link rel="stylesheet" href="css/index.css">
+	<style>
+		.outNav {
+			position: fixed;
+			top: 0;
+			height: 44px;
+			width: 1020px;
+			margin: 0 auto;
+			left: 50%;
+			margin-left: -510px;
+			display: none;
+			z-index: 999;
+		}
+
+		.rightIcon {
+			width: 65px;
+			height: 16px;
+			float: left;
+			margin: 14px 12px 14px 18px;
+		}
+
+		.rightIcon img {
+			width: 65px;
+			height: 16px;
+			display: block;
+		}
+
+		.RightSide .iconLine {
+			float: left;
+			height: 14px;
+			width: 1px;
+			background: rgba(221, 221, 221, 1);
+			margin-top: 14px;
+			margin-right: 12px;
+		}
+
+		.title-txt {
+			height: 44px;
+			line-height: 44px;
+			font-size: 13px;
+			font-family: MicrosoftYaHei;
+			color: rgba(34, 34, 34, 1);
+		}
+
+		.RightSide {
+			width: 400px;
+			float: right;
+			margin-top: -46px;
+		}
+
+		.cube-container {
+			margin: 0;
+			margin-top: 7px;
+		}
+
+		.rightSideTitle {
+			width: 398px;
+			height: 44px;
+			background: rgba(255, 255, 255, 1);
+			border-radius: 2px;
+			border: 1px solid rgba(229, 229, 229, 1);
+			float: right;
+			border-top:0;
+		}
+
+
+		.youlikeIcon {
+			width: 65px;
+			height: 16px;
+			float: left;
+			margin: 14px 12px 14px 18px;
+		}
+
+		.youlikeIcon img {
+			width: 65px;
+			height: 16px;
+			display: block;
+		}
+
+		.iconLine {
+			float: left;
+			height: 14px;
+			width: 1px;
+			background: rgba(221, 221, 221, 1);
+			margin-top: 14px;
+		}
+
+		.NavSide {
+			width: 610px;
+			border: 1px solid #E8E8E9;
+			overflow: hidden;
+			float: left;
+			border-top: 0;
+			position: relative;
+			z-index: 9999;
+			background: #fff;
+		}
+
+		.NavSide .tabItem {
+			line-height: 44px;
+			font-size: 13px;
+			font-family: MicrosoftYaHei;
+			color: rgba(34, 34, 34, 1);
+			position: relative;
+			float: left;
+			padding: 0 12px;
+		}
+
+		.NavSide .tabItem a {
+			color: rgba(34, 34, 34, 1);
+			text-decoration: none;
+		}
+
+		.NavSide .tabItem.tabItemActive a {
+			border-bottom: 2px solid rgba(1, 122, 255, 1);
+			padding-bottom: 5px;
+			font-weight: 700;
+		}
+		.NavSide .tabItem:hover a{
+			font-weight: 700;
+		}
+		.NavSide .tabItem .itemLeftBorder {
+			display: none;
+			width: 2px;
+			height: 100%;
+			/* background-color: #178CFB; */
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		.NavSide .tabItemActive .itemLeftBorder {
+			display: inline-block;
+		}
+
+		.NavSide .tabItem .hotIcon {
+			position: absolute;
+			top: 2px;
+			left: 25px;
+			width: 33px;
+			height: 14px;
+		}
+
+		.rightSideTitle .iconLine {
+			float: left;
+			height: 14px;
+			width: 1px;
+			background: rgba(221, 221, 221, 1);
+			margin-top: 14px;
+			margin-right: 12px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="outNav">
+		<div class="NavSide">
+			<div class="youlikeIcon"><img
+					src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIIAAAAgCAMAAADpCVAqAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAD2UExURUxpcSMjIyIiIiIiIiIiIiMjIyMjIzIyMiIiIiIiIiMjIyMjIyYmJiIiIiIiIiMjIyMjIyIiIiIiIiQkJCIiIjg4OCIiIiMjIyQkJCMjI5CQkCIiIiIiIiMjIyIiIiMjIyUlJSIiIisrKyIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiQkJCIiIiUlJSUlJSIiIiQkJCIiIiIiIiMjIyIiIiIiIiMjI8EzKyIiIqwxKss0LNU1Lf86L/A4Lv86L/9CN/86L58wKYAsJ902LcQ2Lv87MLgzKyIiIv86L0kmJNc2LSYjIq8yKweRESIAAABMdFJOUwBVxTvPn4MF1ed6QxqxuE2uh9o0UQioYCNAAe2iKrpmJ6YP/Jf0yvG0kt6O+MBsrDd+LxS+HnbhW3KcRtlYqefyupboF0Vz1oh/dMgPFLCLAAAD7ElEQVR42sWWaXuiSBCAK6ABPCMuQVHiMQQ1Kioe0exMNnPu1c7M/v8/s1XdtKuis+Czefb9YJUG8O3qqo6A1HSkBoIs5jk4h80Y68EpGr1erwxxnC7A88vLy5/wI1yGtEEwxnxwgcIb/MuVSB1Vkl8PHm2At9vt9hfo3pzmAoU32T1aAEGJYEiGklvQ2D47hQI7DTyNxz4l/njcgaJpjmidZoQTVziiA+CxAxqpFTJsxwO+OUT7DxTW/5uC6fu+0m/maIO/PD8/fwHrKsbwQoVRa488QHd5QEEo5CEBP3GFUFXXvF6qWoWa6/q0NNd1A66QaCLa/X6/aGEyw8SGuMIyDMMlNPVjllzh7ESUkyt0GVLFxMTYOqGQxfdFUNgx7cQKmrLDpKFUdgyB80CNH6lMX0eBneMOOBNxj0p+VnT9Jh8xTafw8f2HX79+T6kwNu6pSQ2jxxDDqB5er0sFzeUbZhHU9xXLEQozz5tQovimD1vOt7d/fP6UXEFnh0zPKECNIbZK0IZe40TEh3L7D8cKm/oRk8sUJOkV4nM+lAqZe4IhI56JjdAVxcDQUJrpFD59/u2vbykV4v8p5fVNDLcA/6qwXm0qlAT1sAAAdca+f/39w/uPr6UQlIkHoXByKJ+oqSl5LYUQiMx5hTo9qZlOIdcgGHJPif5jhUeTGB0prKWCE/CuKu8UrtqOVGheH+FLhQo7wEjdC63RiEkFlWd9IH5mnIJUiHNWwUqpEDDBXCr0akC0EyvkDILfSkkGlpRXzyjcTYjeCQUfIgW9DQIloUK8HasMWSZsR6kwWtSEwsO1BRHzgaLrOhXHyZ3jHRAOIhQojfbQOlaodfp8mztEgxbbsYWCoyEOcApTuIRr7HOhUObLn/GOOFaYshhepFBBXIACxS6NAsYWICtMyKmOv8xvMHoY19SoGOnJ8xJSE2eJLxRCfFE1E1+zKRTm0e+Mrhz+QB5OC0yGGDcYzehXQVM2Lco6NEq0FVjgG6Ewp08qfLATKbzjClXZdI8YN/Ib5ntnzwDjAoDXNwORrIqJTz0lesvTRC+g1aqEWcOKKVjVPahQT/nyHUN4U44cWgt9CnvlsKNyFKO6XtGVgNAAtqKvmGBsYLV0Rgq0jkqJZzEFkOwmYsUIE2ZyIj1MSpTQzNrycNJEeYLdBkT3z6IzaSycN4xQeUFKtJTkCkO++AHs1RmoSCuModiiuax7Wx6ii+gWeoQujgHeV7pGf7otYdGTK2QsyOCBxsfbxoQrFDGhRRYMxIVqBrFohygJafUYKzQ7GO+wWnh8uIbxeLsEGOi659kOcHKLxWJGyRAflIV9uogVGIYys+Bv/ZlZsXCXupIAAAAASUVORK5CYII="
+					alt=""></div>
+			<div class="iconLine"></div>
+			
+		</div>
+		<div class="rightSideTitle">
+			<div class="rightIcon"><img
+					src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAAAgCAMAAADkFyBtAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAECUExURUxpcSQkJCIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiMjIyIiIiMjIyIiIiMjIykpKSMjIyIiIi0tLSIiIiwsLCIiIiMjIyIiIiIiIiMjIycnJyIiIiIiIiYmJiQkJDxSLSIiIiIiIiIiIiIiIiIiIiUlJSIiIiMjIyUlJSUlJSMjIyIiIiIiIiIiIiMjIyMjIyIiIlfKAFjJAFzOAFnLAESMDEJ5CyMjIyIiIlfJAFfJAFfJACIiIlfKAFfJAFfKAFfJAE6wBFjKAFzOAFfJAFjJAEeSC0iZCUCBDkGCDiIiIlfJADhnFEmeCCMmIT14ECYwHjBOGfiOO8QAAABOdFJOUwBGybvFi0t06pVx+vO5TvUcjSsYkdQQgAuFmXzYahPPth89B9/eqa7jFvxjNiQxpJOdV1pBUWIaN6cXXcOv7ftSnai9zfrZL3h8nvfpx5XT4igAAAO5SURBVHjarZfpeto6EEAHamJjQwx2IaZsXggBwpI9aZMmadre/Yp0ue//KlczxrLBcj6Tcn5EY4VYR6ORFIAzZIy9hV9j6LruHoQog8Ggy9tbVVXnEPLXkgOCA0VR6pCkwyWUshQLOP5eJhaEjBmnACEjHrd5e8rbdxDyPpJY9Pv9R5q3Cwl8lg1NTmGZlCCkgA/jDYkz3h5uSmhom5LwDncg0eKxBhsSlB5vXcLCPss54j+rzgoAtcJ2IIETGW5KQJ8HxwkJsk1jQwObYiGDXiQxqqaoxBJThsOlJGqWZdlABB84AFMjU6IzhpdQqMBSNGKJo7AkWiaBD4Yp8KBdIg7gbMIyJRpv5NRySlywsCTqTIYHGiMq0MZmYhgGyRgrxlBuFVgWXj6JZmMbiaMAIL1FbZZFvkwEdyy/xKQMIJOYsSzGuSR0FkkETcSiKm0KAPR22yWJc90GuQT90YXNqc3nc8smutjZzCWhCgmIK8SHdbokgcgl5owzw6gXv+sWO51XSZD/TCrhaitMrMvooRUd2554r0XRMXYGkcTPH/9ewwY3/zx/jyQaSYk6+UslikzGCfR6jxhYPWTBI50inWqi54QSX5fLh49X1wmDP77wE/BHKDG60JMSLl0Zdq1Wc/JKsBcpk8TPZcj9l49Pnz49ff7tYUl8I4lpE9YkNNyHdJAf7FKCfVtKeeYSiJAQR3gLBjKJMU9PCaMa5wQzhkEzn8T3568pg4e//2MyiRZtNnkmkAWOHX2wA0SxSFd5cYMRlm+xqIrdcfPn5/vY4P7p6rrBZBJ0dZqBNBPi925SQmwEgyKH/6/kA9HGm3PzAru+uby8urq8/J22jVzCYzSINBNitdopCV1IOhOchJA4zL5FsyXKjHMLWZkI3tBejCQGsEIVb6DqnQqJziskPAPDIEtiTA53cfH4EGferBP43ipFOLBWr0+3lThlnDqI5VifqTuhu3waS7C+orTpIZvjLSUsHMW0IZWJEi2vwRA1Tg5xisfs7iScBqOx0xJDXAWSMHQImZkJiZOdSThVxhk5aYmgQseowcyhBRGPWiwx35eAAyv7+14eCVHbd7TiPkQSCyBEtg9ufRIUanMfmUGagJ+kMxxhmNgdjbcptJSEFq84SRilM44H51UW0jlVdQmQxmKImEie7x16LFEW3y0jzrH/RV6SKG0vQR3EYlNCM18jYVpbS1S6EDHT1iWUmr3YQmLWJ4ZTWHGuZuID0dU0rQGw8CDGbg2PCB/6xXIBON6eflKW8D/gZTg1JvTJrAAAAABJRU5ErkJggg=="
+					alt=""></div>
+			<div class="iconLine"></div>
+			<div class="title-txt">
+				发现更多精彩，你想看的这儿都有
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<div id="card-slider-frame">
+			<!--if expr="pp_ifdef('USE_360_INTERNATIONAL')">
+      <div id="search_test" style="width:100%;height:100px; position:absolute;top:0px; text-align:center;z-index:10; opacity: 0; top:-999em"></div>
+      </if-->
+			<!--if expr="not pp_ifdef('USE_360_INTERNATIONAL')"-->
+			<div id="search_test"
+				style="width:100%;height:100px; position:absolute;top:0px; text-align:center;z-index:10;">
+				<div class="so-hotword-wrap">
+					<div class="so-hotword-action">
+						<a href="javascript:void(0)" class="gear state-button"></a>
+						<div class="action-content-wrap g-tips g-tips-bottom">
+							<ul class="content" ondragstart="return false;">
+								<li class="edit">
+									<a href="javascript:void(0)">编辑</a>
+								</li>
+								<li class="last noshow">
+									<a href="javascript:void(0)">关闭</a>
+								</li>
+							</ul>
+						</div>
+						<div class="noshow-prompt" id="so-hotword-prompt" ondragstart="return false;">
+							<a href="javascript:void(0);" class="close">关闭</a>
+							<ul class="content">
+								<li class="top">您确定要关闭常搜吗？</li>
+								<li class="bottom">
+									<a href="javascript:void(0)" class="left noshow">关闭</a>
+									<a href="javascript:void(0);" class="right continue-use">取消</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<ul class="so-hotword" data-pid="soHotWords_top"></ul>
+				</div>
+			</div>
+			<!--/if-->
+			<div id="grid-wrap">
+				<button id="page-switcher-start" class="page-switcher" hidden></button>
+				<div id="page-list"></div>
+				<button id="page-switcher-end" class="page-switcher" hidden></button>
+			</div>
+			<!-- 导航模式-begin -->
+			<div id="nav-wrap">
+				<!-- 最常访问-begin -->
+				<div id="page-list-new" class="nav-dial">
+
+				</div>
+				<iframe id="myiframe" src='' scrolling='no' width='100%'
+					frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+					allowtransparency="yes"></iframe>
+				<!-- 最常访问-end -->
+				<!-- 信息流-begin -->
+				<div class="nav-news clearfix" style="display: none;">
+					<!-- 左侧信息流-begin -->
+					<div class="news-left">
+						<div class="news-hd-wrapper">
+							<div class="news-tab">热点新闻</div>
+						</div>
+						<div class="news-bd-wrapper">
+							<div class="news-loading-wrapper">
+								<div class="news-loading-container">
+									<div class="news-loading-img"></div>
+									<span class="news-loading-title">正在为您推荐···</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 左侧信息流-end -->
+					<!-- 右侧热门新闻-begin -->
+					<div class="news-right">
+						<div class="side-container">
+							<div class="news-side">
+								<div class="side-hd">
+									<div class="side-tab">精彩速递</div>
+								</div>
+								<div class="side-bd">
+									<div class="side-tips"></div>
+									<ul class="side-wrapper" data-pid="side_youlike"
+										data-scene='360cse_newtab_youce_feed'></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 右侧热门新闻-end -->
+					<div class="news-refresh-top-container">
+						<div class="news-refresh-top">
+							<div class="news-refresh" title="刷新"></div>
+							<div class="news-top" title="返回顶部"></div>
+						</div>
+					</div>
+					<div class="net-error">
+						<p class="net-error-tip">
+							请检查网络或者
+							<a class="net-error-refresh" href="javascript:void(0)">点此刷新</a>
+						</p>
+					</div>
+				</div>
+				<!-- 信息流-end -->
+			</div>
+			<!-- 导航模式-end -->
+			<div id="pure-search-wrap">
+				<div class="search-logo">
+					<a href="https://www.so.com/?src=360chrome_home_logo&ls=0" class="search-logo-link" target="_blank">
+					</a>
+				</div>
+			</div>
+			<div id="attribution">
+				<span i18n-content="attributionintro"></span>
+				<img id="attribution-img">
+			</div>
+		</div>
+		<ul id="search-menu">
+			<li>
+				<a href="#" class="so"></a>
+			</li>
+			<li>
+				<a href="#" class="google"></a>
+			</li>
+			<li>
+				<a href="#" class="baidu"></a>
+			</li>
+		</ul>
+		<div id="hot-items" class="hidden">
+			<div id="hot-news">
+				<div id="hot-news-list"></div>
+			</div>
+			<div id="hot-weibo">
+				<div id="hot-weibo-list"></div>
+			</div>
+			<a id="hot-more" href="http://sh.qihoo.com/?src=360chrome_newtab_newshot" target="_blank"></a>
+		</div>
+		<div id="search-sg" data-pid="search-sg">
+		</div>
+		<div class="banner">
+			<div class="settings grid" id="grid" title="九宫格模式"></div>
+			<div class="settings nav" id="nav" title="导航模式"></div>
+			<div class="settings pure-search" id="pure-search" title="搜索模式"></div>
+
+			<div class="mode-search-tip-card">
+				<span class="search-card-arrow"></span>
+				<span class="search-card-close"></span>
+				<p class="search-card-word">试试纯净搜索模式吧~</p>
+				<span class="search-card-btn">好的</span>
+			</div>
+
+			<div class="banner-line"></div>
+			<div class="settings theme" id="theme" title="换一换皮肤"></div>
+			<div class="settings setting" id="setting" title="设置"></div>
+			<div class="mode-grid-tip">
+				<a class="mode-grid-tip-close"></a>
+			</div>
+		</div>
+		<div id="add-dot-container" class="popup-container">
+			<div class="c_title">
+				<span class="add-container-title">标签页设置</span>
+				<a href="javascript:" onclick="conClose('add-dot-container')"></a>
+			</div>
+			<div class="c_body">
+				<div class="effect-row">
+					<div>
+						<span>显示搜索框</span>
+						<div class="add-dot-range">
+							<input id="showSearchEngineRange" class="rangeSwitch" type="range" min="0" max="1"
+								value="0">
+						</div>
+					</div>
+					<div hidden>
+						<span>显示收藏栏</span>
+						<div class="add-dot-range">
+							<input id="showFavorite" class="rangeSwitch" type="range" min="0" max="1" value="0">
+						</div>
+					</div>
+					<div>
+						<span>显示分类导航</span>
+						<div class="add-dot-range">
+							<input id="showHao360Range" class="rangeSwitch" type="range" min="0" max="1" value="0">
+						</div>
+					</div>
+					<div>
+						<span>显示为空白页</span>
+						<div class="add-dot-range">
+							<input id="showBlankPage" class="rangeSwitch" type="range" min="0" max="1" value="0">
+						</div>
+					</div>
+					<div>
+						<span>显示常搜词</span>
+						<div class="add-dot-range">
+							<input id="enable-push-oftenso" class="rangeSwitch" type="range" min="0" max="1" value="0">
+						</div>
+					</div>
+				</div>
+				<div class="effect-row">
+					最常访问显示个数：<span class="blue"><span id="thumbnailCountSelectText"></span>个</span>
+					<div class="last2" id="visited_count_div"><i data-num="0">0</i><i data-num="8">8</i><i
+							data-num="12">12</i><i data-num="16">16</i><i data-num="20">20</i></div>
+				</div>
+				<div class="effect-row">
+					最常访问间距：<span class="blue"><span id="thumbnailMarginRangeText"></span>px</span>
+					<div class="last2">
+						<p id="thumbnailMarginbar" class="opacityBar"></p>
+						<input id="thumbnailMarginRange" type="range" class="range360" min="0" max="16" value="8">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="add-over-layer">
+		</div>
+		<div id="user-add-container">
+			<div class="c_title" onmousedown="conMoveEvent(event,'user-add-container')">
+				<span id="u_title" i18n-content="editAddUrl"></span>
+				<a href="javascript:" onclick="conClose('user-add-container')"></a>
+			</div>
+			<div class="u_body">
+				<span><label i18n-content="editTitle"></label><input type="text" id="new_title" /></span>
+				<span style="margin-top: 13px;"><label i18n-content="editUrl"></label><input type="text"
+						id="new_url" /></span>
+				<ul>
+					<li id="latest_select" class="tab_active" i18n-content="mostvisited"></li>
+					<li id="opened_select" i18n-content="editCurrentOpened"></li>
+				</ul>
+				<div id="latest_url" class="url_list"></div>
+				<div id="opened_url" class="url_list"></div>
+			</div>
+			<div class="u_action"><span id="u_cancel" onclick="conClose('user-add-container')"
+					i18n-content="editCancel"></span><span id="u_ok" i18n-content="editOK"></span></div>
+			<div id="u_err">
+				<div class="err_msg" i18n-content="editInputUrl"></div>
+				<div class="traigle"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-left"></div>
+			<ul id="dot-list">
+			</ul>
+			<div class="footer-right"></div>
+		</div>
+		<button id="recently-closed-menu-button">
+			<!-- <span i18n-content="recentlyclosed"></span> -->
+			<div class="disclosure-triangle"></div>
+		</button>
+		<!-- TODO(estade): may want to remove this. -->
+		<div id="trash"></div>
+	</div>
+	<!--script src="chrome://resources/js1/i18n_template.js"></script>
+  <script src="chrome://resources/js1/i18n_process.js"></script-->
+</body>
+<!-- A div to hold all the templates, and in the darkness bind them. -->
+<div hidden>
+	<!-- Apps promo. -->
+	<div id="apps-promo-extras-template" class="apps-promo-extras" hidden>
+		<h3 class="apps-promo-heading"></h3>
+		<a class="apps-promo-link g-button-basic"></a>
+	</div>
+	<!-- App Contents w/ Large Icon -->
+	<div id="app-large-icon-template" class="app-contents" hidden>
+		<div class="app-img-container">
+			<img class="invisible">
+		</div>
+		<span class="title"></span>
+	</div>
+	<!-- App Contents w/ Small Icon -->
+	<div id="app-small-icon-template" class="app-contents" hidden>
+		<div class="app-icon-div">
+			<div class="app-img-container">
+				<img class="invisible">
+			</div>
+			<div class="color-stripe"></div>
+		</div>
+		<span class="title"></span>
+	</div>
+</div>
+
+<script src="js/index.js"></script>
+<!-- added by 360 -->
+<!--if expr="not pp_ifdef('USE_360_INTERNATIONAL')"-->
+<script type="template" id="weather_template">
+	<div class="weather_layer face front_face">
+			<a class="toggle_flip" href="javascript:;">
+				{$curCity}
+			</a>
+			<a class="toggle_flip" href="javascript:;" hidden>
+				更换城市
+			</a> {if($weatherGetStatus == 0)}
+			<div class="nav_weather_icon">
+				<a href="http://www.weather.com.cn/weather/{$curArea}.shtml#7d" target="_blank">
+					<div class="{$imgClassName}">
+					</div>
+				</a>
+			</div>
+			<p>
+				<a href="http://www.weather.com.cn/weather/{$curArea}.shtml#7d" target="_blank">
+					<span class="temp">
+                        {$temp}℃
+                    </span>
+					<span>
+                        {$weather}
+                    </span>
+				</a>
+			</p>
+			<p>
+				<a href="http://www.weather.com.cn/weather/{$curArea}.shtml#7d" target="_blank">
+					明天 : {$tomorrowWeather}
+				</a>
+			</p>
+			{else}
+			<div class='nav_weather_icon'>
+				<div class='nav_weather_img nav_weather_10000'></div>
+			</div>
+			<p>无法获取天气信息</p>
+			{/if}
+		</div>
+		<div class="setcity_layer face back_face">
+			<a class="close_flip" href="javascript:;" style="position:absolute; top:0; right:12px">
+				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOdAAADnQBaySz1gAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNAay06AAAAAWdEVYdENyZWF0aW9uIFRpbWUAMTIvMTUvMTEhSi6CAAAAPUlEQVQYlY2OQQ4AIAjDCv//8zwYjeJM2G1NMwhJYiZ4I4CswPUsC6oCEGvJiZtnBa63f7InTp4f4RJbPw1QYhAO0nH+eAAAAABJRU5ErkJggg==">
+			</a>
+			<p>
+				<label>
+        <input name="citycode_type" value="0" type="radio" checked=""> 自动识别所在城市
+      </label>
+			</p>
+			<p>
+				<label>
+        <input name="citycode_type" value="1" type="radio"> 指定城市
+      </label>
+			</p>
+			<p>
+				<select id="weather-province">
+				</select>
+			</p>
+			<p>
+				<select id="weather-city">
+				</select>
+			</p>
+			<p>
+				<select id="weather-town">
+				</select>
+			</p>
+			<p>
+				<input type="button" value="确定" id="weatherconfirm" class="input-btn">
+			</p>
+		</div>
+	</script>
+<script type="template" id="ads-1-tpl">
+	<li id="{{=it.id}}" class="news-packet packet-ads1" data-newstype="{{=it.newsType}}">
+			<a class="news-link label-link clearfix" data-title="{{!it.title}}" data-rc="{{!it.rc}}" data-ct="{{!it.tplType}}" data-newstype="{{=it.newsType}}" data-source="{{!it.newsType}}" data-tpl="{{!it.tplType}}" data-clktk="{{!it.clktk}}" data-rc="{{!it.expId}}" data-scene="360cse_newtab_youce_feed" data-imptk="{{!it.imptk}}" data-href="{{!it.url_encode}}" href="{{!it.url}}" target="_blank">
+				<div class="ads1-images">
+					<div class="ads1-images-link">
+						{{? it.author == "360搜索"}}
+						<span class="side-sd-tag" style="background: none !important;"></span>
+						{{??}}
+						<span class="side-sd-tag"></span>
+						{{?}}
+						<img class="ads1-img" src="{{!it.img}}" onerror="src='{{!it.errorimg}}'"> 
+						{{? it.webui != "ui_new"}} 
+							{{? it.adsTag && it.author != "360搜索"}}
+							<span class="ads2-tag"></span>
+							{{?}}
+						{{?}}
+					</div>
+				</div>
+				<div class="ads1-body">
+					<h2 class="ads1-h2">
+		        		<span class="news-title" title="{{!it.title}}">{{!it.title}}</span>
+		        	</h2>
+					<div class="ads1-info">
+						{{? it.cat}}<span class="news1-cat currentCat" style='border:1px solid {{!it.color}};color:{{!it.color}}'>{{!it.cat}}</span>{{?}} {{? it.styles}} {{? it.iconShow}} {{? it.icon.indexOf(".") > 0}}
+						<img class="news-img-add" src='{{!it.icon}}' /> {{?? }}
+						<span class="news3-from currentIconText" style="background: {{!it.bgColor}};">{{!it.iconTxt}}</span> {{?}} {{?}} {{?}} {{? it.author}}
+						<span class="news3-from currentAuther">{{!it.author}}</span> {{?}} {{? it.time}}<span class="news0-date currentTimeStamp">{{!it.time}}</span>{{?}} 
+						{{? it.adsTag && it.author != "360搜索"}}
+						<span class="ads2-tag adsTagicon">广告</span>
+						{{?}}
+					</div>
+				</div>
+			</a>
+			<a class="news-dislike label-link" data-title="{{!it.title}}" data-rc="{{!it.rc}}" data-source="{{!it.newsType}}" data-newstype="{{!it.newsType}}" data-tpl="{{!it.tplType}}" data-clktk="{{!it.clktk}}" data-rc="{{!it.expId}}" data-scene="360cse_newtab_youce_feed" data-imptk="{{!it.imptk}}" data-href="{{!it.url_encode}}" href="{{!it.url}}" data-ct="dis-1">不感兴趣</a>
+		</li>
+	</script>
+<script type="template" id="ads-2-tpl">
+	<li id="{{=it.id}}" class="news-packet packet-ads2" data-newstype="{{=it.newsType}}">
+			<div class="ads2-hd">
+				<a class="news-link label-link" data-title="{{!it.title}}" data-rc="{{!it.rc}}" data-ct="{{!it.tplType}}" data-source="{{!it.newsType}}" data-newstype="{{!it.newsType}}" data-tpl="{{!it.tplType}}" data-clktk="{{!it.clktk}}" data-rc="{{!it.expId}}" data-scene="360cse_newtab_youce_feed" data-imptk="{{!it.imptk}}" data-href="{{!it.url_encode}}" href="{{!it.url}}" target="_blank">
+					<h2 class="ads2-h2" style="padding-top: {{!it.paddingTopLess}}px;padding-bottom: {{!it.paddingBottomDown}}px;">
+			        <span class="news-title"> {{!it.title}} </span>
+			      </h2>
+				</a>
+			</div>
+			<div class="ads2-bd">
+				{{~ it.assets :m:n}}
+				<a class="news-link label-link ads2-images-link" data-source="{{!it.newsType}}" data-title="{{!it.title}}" data-rc="{{!it.rc}}" data-ct="{{!it.tplType}}" data-newstype="{{!it.newsType}}" data-tpl="{{!it.tplType}}" data-href="{{!it.url_encode}}" data-rc="{{!it.expId}}" href="{{!m.curl}}" data-clktk="{{!it.clktk}}" target="_blank">
+					<img class="ads2-img" src="{{!m.img}}" onerror="src='{{!it.errorimg}}'"> {{? it.imgType}}{{? it.assets[n].desc}}<span class="desc">{{!it.assets[n].desc}}</span>{{?}}{{?}} 
+					{{? it.webui != "ui_new"}} 
+						{{? it.adsTag && n == 3 && it.author != "360搜索"}}
+						<span class="ads2-tag"></span>
+						{{?}} 
+					{{?}}
+					{{? it.author == "360搜索"}}
+					<span class="side-sd-tag" style="background: none !important;"></span>
+					{{??}}
+					<span class="side-sd-tag"></span>
+					{{?}}
+				</a>
+				{{~}}
+			</div>
+			<div class="ads2-info">
+				{{? it.cat}}<span class="news1-cat currentCat" style='border:1px solid {{!it.color}};color:{{!it.color}}'>{{!it.cat}}</span>{{?}} {{? it.styles}} {{? it.iconShow}} {{? it.icon.indexOf(".") > 0}}
+				<img class="news-img-add" src='{{!it.icon}}' /> {{?? }}
+				<span class="news3-from currentIconText" style="background: {{!it.bgColor}};">{{!it.iconTxt}}</span> {{?}} {{?}} {{?}} {{? it.author}}
+				<span class="news3-from currentAuther">{{!it.author}}</span> {{?}} {{? it.time}}<span class="news0-date currentTimeStamp">{{!it.time}}</span>{{?}} 
+				{{? it.adsTag && it.author != "360搜索"}}
+				<span class="ads2-tag adsTagicon">广告</span>
+				{{?}}
+			</div>
+			<a class="news-dislike label-link" data-title="{{!it.title}}" data-rc="{{!it.rc}}" data-source="{{!it.newsType}}" data-newstype="{{!it.newsType}}" data-tpl="{{!it.tplType}}" data-clktk="{{!it.clktk}}" data-rc="{{!it.expId}}" data-scene="360cse_newtab_youce_feed" data-imptk="{{!it.imptk}}" data-href="{{!it.url_encode}}" href="{{!it.url}}" data-ct="dis-2">不感兴趣</a>
+		</li>
+	</script>
+<script type="template" id="ads-3-tpl">
+	<li id="{{=it.id}}" class="news-packet packet-ads3" data-newstype="{{=it.newsType}}">
+			<a class="news-link label-link clearfix" data-title="{{!it.title}}" data-rc="{{!it.rc}}" data-source="{{!it.newsType}}" data-ct="{{!it.tplType}}" data-newstype="{{!it.newsType}}" data-tpl="{{!it.tplType}}" data-clktk="{{!it.clktk}}" data-rc="{{!it.expId}}" data-scene="360cse_newtab_youce_feed" data-imptk="{{!it.imptk}}" data-href="{{!it.url_encode}}" href="{{!it.url}}" target="_blank">
+				<h2 class="ads3-h2" style="">
+			        <span class="news-title"> {{!it.title}} </span>
+			      </h2>
+				<div class="ads3-bd">
+					<div class="ads3-images-link">
+						{{? it.author == "360搜索"}}
+						<span class="side-sd-tag" style="background: none !important;"></span>
+						{{??}}
+						<span class="side-sd-tag"></span>
+						{{?}}
+						<img class="ads3-img" src="{{!it.img}}" onerror="src='{{!it.errorimg}}'"> 
+						{{? it.webui != "ui_new"}} 
+							{{? it.adsTag && it.author != "360搜索"}}
+							<span class="ads3-tag"></span>
+							{{?}} 
+						{{?}}
+					</div>
+				</div>
+				<div class="ads3-info">
+					{{? it.cat}}<span class="news1-cat currentCat" style='border:1px solid {{!it.color}};color:{{!it.color}}'>{{!it.cat}}</span>{{?}} {{? it.styles}} {{? it.iconShow}} {{? it.icon.indexOf(".") > 0}}
+					<img class="news-img-add" src='{{!it.icon}}' /> {{?? }}
+					<span class="news3-from currentIconText" style="background: {{!it.bgColor}};">{{!it.iconTxt}}</span> {{?}} {{?}} {{?}} {{? it.author}}
+					<span class="news3-from currentAuther">{{!it.author}}</span> {{?}} {{? it.time}}<span class="news0-date currentTimeStamp">{{!it.time}}</span>{{?}} 
+					{{? it.adsTag && it.author != "360搜索"}}
+					<span class="ads2-tag adsTagicon">广告</span>
+					{{?}}
+				</div>
+			</a>
+			<a class="news-dislike label-link" data-title="{{!it.title}}" data-rc="{{!it.rc}}" data-source="{{!it.newsType}}" data-newstype="{{!it.newsType}}" data-tpl="{{!it.tplType}}" data-clktk="{{!it.clktk}}" data-rc="{{!it.expId}}" data-scene="360cse_newtab_youce_feed" data-imptk="{{!it.imptk}}" data-href="{{!it.url_encode}}" href="{{!it.url}}" data-ct="dis-3">不感兴趣</a>
+		</li>
+	</script>
+<script type="template" id="ads-4-tpl">
+	<li id="{{=it.id}}" class="news-packet packet-ads4" data-newstype="{{=it.newsType}}">
+			<a class="news-link label-link clearfix" data-title="{{!it.title}}" data-rc="{{!it.rc}}" data-source="{{!it.newsType}}" data-ct="{{!it.tplType}}" data-newstype="{{!it.newsType}}" data-tpl="{{!it.tplType}}" data-clktk="{{!it.clktk}}" data-rc="{{!it.expId}}" data-scene="360cse_newtab_youce_feed" data-imptk="{{!it.imptk}}" data-href="{{!it.url_encode}}" href="{{!it.url}}" target="_blank">
+				<h2 class="ads4-h2" style="">
+        <span class="news-title"> {{!it.title}} </span>
+      </h2>
+				<div class="ads4-bd">
+					<div class="ads4-images-link">
+						{{? it.author == "360搜索"}}
+						<span class="side-sd-tag" style="background: none !important;"></span>
+						{{??}}
+						<span class="side-sd-tag"></span>
+						{{?}}
+						<video class="ads4-video" width="100%" height="100%" poster="{{!it.img}}" preload muted loop>
+							<source src="{{!it.video}}" type="video/mp4" />
+						</video>
+						{{? it.webui != "ui_new"}} 
+							{{? it.adsTag && it.author != "360搜索"}}
+							<span class="ads4-tag"></span>
+							{{?}} 
+						{{?}}
+					</div>
+				</div>
+				<div class="ads4-info">
+					{{? it.cat}}<span class="news1-cat currentCat" style='border:1px solid {{!it.color}};color:{{!it.color}}'>{{!it.cat}}</span>{{?}} {{? it.styles}} {{? it.iconShow}} {{? it.icon.indexOf(".") > 0}}
+					<img class="news-img-add" src='{{!it.icon}}' /> {{?? }}
+					<span class="news3-from currentIconText" style="background: {{!it.bgColor}};">{{!it.iconTxt}}</span> {{?}} {{?}} {{?}} {{? it.author}}
+					<span class="news3-from currentAuther">{{!it.author}}</span> {{?}} {{? it.time}}<span class="news0-date currentTimeStamp">{{!it.time}}</span>{{?}} 
+					{{? it.adsTag && it.author != "360搜索"}}
+					<span class="ads2-tag adsTagicon">广告</span>
+					{{?}}
+				</div>
+			</a>
+			<a class="news-dislike label-link" data-title="{{!it.title}}" data-rc="{{!it.rc}}" data-source="{{!it.newsType}}" data-newstype="{{!it.newsType}}" data-tpl="{{!it.tplType}}" data-clktk="{{!it.clktk}}" data-rc="{{!it.expId}}" data-scene="360cse_newtab_youce_feed" data-imptk="{{!it.imptk}}" data-href="{{!it.url_encode}}" href="{{!it.url}}"data-ct="dis-4">不感兴趣</a>
+		</li>
+	</script>
+<script type="template" id="news-0-tpl">
+	<li id="{{=it.id}}" class="news-packet packet-news1" data-newstype="{{=it.newsType}}" data-istopdata="{{!it.isTopData}}">
+			<a class="news-link label-link clearfix" data-title="{{=it.title}}" data-ext="{{=it.dot}}" data-rc="{{=it.rc}}" data-source="{{!it.newsType}}" data-ct="{{!it.tplType}}" data-newstype="{{=it.newsType}}" data-tpl="{{=it.tplType}}" data-log="{{=it.log}}" href="{{=it.url}}" target="_blank">
+				<h2 class="news1-h2">
+		          	<span class="news1-link"> {{=it.title}} </span>
+		        </h2>
+				<div class="news1-info">
+					
+					{{? (it.cat && it.isReadSeal && it.catPos == 1) || (it.cat && !it.isReadSeal)}}
+						<span class="news1-cat currentCat" style='border:1px solid {{!it.color}};color:{{!it.color}}'>{{!it.cat}}</span>
+					{{?}}
+					
+					
+					{{? it.styles}} {{? it.iconShow}} {{? it.icon.indexOf(".") > 0}}
+					<img class="news-img-add" src='{{!it.icon}}' /> {{?? }}
+					<span class="news3-from currentIconText" style="background: {{!it.bgColor}};">{{!it.iconTxt}}</span> {{?}} {{?}} {{?}} {{? it.author}}
+					<span class="news3-from currentAuther">{{!it.author}}</span> {{?}} 
+					{{? it.time && !it.isTopData}}<span class="news0-date currentTimeStamp">{{!it.time}}</span>{{?}} 
+					
+					{{? it.cat && it.isReadSeal && it.catPos == 2}}
+						<span class="news1-cat currentCat" style='border:1px solid {{!it.color}};color:{{!it.color}}'>{{!it.cat}}</span>
+					{{?}}
+					
+					
+					{{? it.adsTag}}<span class="ads2-tag">广告</span>{{?}}
+				</div>
+			</a>
+			{{? !it.isTopData}}
+				<a class="news-dislike label-link" data-ext="{{=it.dot||''}}" data-rc="{{=it.rc}}" data-tpl="{{!it.tplType}}" data-newstype="{{=it.newsType}}" data-log={{!it.log}} href="{{!it.url}}" data-title="{{!it.title}}" data-source="{{!it.newsType}}" data-ct="dis-0">不感兴趣</a>
+			{{?}}
+		</li>
+	</script>
+<script type="template" id="news-1-tpl">
+	<li id="{{=it.id}}" class="news-packet packet-news2" data-newstype="{{=it.newsType}}" data-istopdata="{{!it.isTopData}}">
+			<a class="news-link label-link clearfix" data-title="{{=it.title}}" data-ext="{{=it.dot}}" data-rc="{{=it.rc}}" data-source="{{!it.newsType}}" data-ct="{{!it.tplType}}" data-newstype="{{=it.newsType}}" data-tpl="{{=it.tplType}}" data-log="{{=it.log}}" href="{{=it.url}}" target="_blank">
+				<div class="news2-images">
+					<span class="images-link news2-images-link"> {{~ it.images :m:n }}
+		            <img class="news2-image" src="{{=m}}" onerror="src='http://p0.qhimg.com/t01c8d837ba85a8eeb2.png'"> {{? it.isVideo }}
+		          	<span class="news-duration">{{=it.duration}}</span> {{?}} {{~}} </span>
+				</div>
+				<div class="news2-body">
+					<h2 class="news2-h2">
+			            <span class="news2-link"> {{=it.title}} </span>
+			        </h2>
+					<div class="news2-info">
+						
+						{{? (it.cat && it.isReadSeal && it.catPos == 1) || (it.cat && !it.isReadSeal)}}
+							<span class="news1-cat currentCat" style='border:1px solid {{!it.color}};color:{{!it.color}}'>{{!it.cat}}</span>
+						{{?}}
+						
+						
+						{{? it.styles}} {{? it.iconShow}} {{? it.icon.indexOf(".") > 0}}
+						<img class="news-img-add" src='{{!it.icon}}' /> {{?? }}
+						<span class="news3-from currentIconText" style="background: {{!it.bgColor}};">{{!it.iconTxt}}</span> {{?}} {{?}} {{?}} {{? it.author}}
+						<span class="news3-from currentAuther">{{!it.author}}</span> {{?}} 
+						{{? it.time && !it.isTopData}}<span class="news0-date currentTimeStamp">{{!it.time}}</span>{{?}}
+						
+						{{? it.cat && it.isReadSeal && it.catPos == 2}}
+							<span class="news1-cat currentCat" style='border:1px solid {{!it.color}};color:{{!it.color}}'>{{!it.cat}}</span>
+						{{?}}
+						
+						{{? it.adsTag}}<span class="ads2-tag">广告</span>{{?}}
+					</div>
+				</div>
+			</a>
+			{{? !it.isTopData}}
+				<a class="news-dislike  label-link" data-ext="{{=it.dot||''}}" data-rc="{{=it.rc}}" data-tpl="{{!it.tplType}}" data-newstype="{{=it.newsType}}" data-log={{!it.log}} href="{{!it.url}}" data-title="{{!it.title}}" data-source="{{!it.newsType}}" data-ct="dis-1">不感兴趣</a>
+			{{?}}	
+		</li>
+	</script>
+<script type="template" id="news-3-tpl">
+	<li id="{{=it.id}}" class="news-packet packet-news3" data-newstype="{{=it.newsType}}" data-istopdata="{{!it.isTopData}}">
+			<a class="news-link label-link clearfix" data-title="{{=it.title}}" data-ext="{{=it.dot}}" data-rc="{{=it.rc}}" data-source="{{!it.newsType}}" data-ct="{{!it.tplType}}" data-newstype="{{=it.newsType}}" data-tpl="{{=it.tplType}}" data-log="{{=it.log}}" href="{{=it.url}}" target="_blank">
+				<h2 class="news3-h2">
+		          	<span class="news3-link"> {{=it.title}} </span>
+		        </h2>
+				<div class="news3-images">
+					{{~ it.images :m:n }}
+					<span class="images-link news3-images-link">
+			            <img class="news3-image" src="{{=m}}" onerror="src='http://p0.qhimg.com/t01c8d837ba85a8eeb2.png'"> 
+			            {{? it.isVideo }}
+			            <span class="news-duration">{{=it.duration}}</span> {{?}}
+					</span>
+					{{~}} {{? it.moreImg}}
+					<span class="news3-images-link">
+	            		<span class="news-images-more">查看更多</span>
+					</span>
+					{{?}}
+				</div>
+				<div class="news3-info">
+					
+					{{? (it.cat && it.isReadSeal && it.catPos == 1) || (it.cat && !it.isReadSeal)}}
+						<span class="news1-cat currentCat" style='border:1px solid {{!it.color}};color:{{!it.color}}'>{{!it.cat}}</span>
+					{{?}}
+					
+					
+					{{? it.styles}} {{? it.iconShow}} {{? it.icon.indexOf(".") > 0}}
+					<img class="news-img-add" src='{{!it.icon}}' /> {{?? }}
+					<span class="news3-from currentIconText" style="background: {{!it.bgColor}};">{{!it.iconTxt}}</span> {{?}} {{?}} {{?}} {{? it.author}}
+					<span class="news3-from currentAuther">{{!it.author}}</span> {{?}}
+					{{? it.time && !it.isTopData}}<span class="news0-date currentTimeStamp">{{!it.time}}</span>{{?}}
+					
+					{{? it.cat && it.isReadSeal && it.catPos == 2}}
+						<span class="news1-cat currentCat" style='border:1px solid {{!it.color}};color:{{!it.color}}'>{{!it.cat}}</span>
+					{{?}}
+					
+					{{? it.adsTag}}<span class="ads2-tag">广告</span>{{?}}
+				</div>
+			</a>
+			{{? !it.isTopData}}
+				<a class="news-dislike  label-link" data-ext="{{=it.dot||''}}" data-rc="{{=it.rc}}" data-tpl="{{!it.tplType}}" data-newstype="{{=it.newsType}}" data-log={{!it.log}} href="{{!it.url}}" data-title="{{!it.title}}" data-source="{{!it.newsType}}" data-ct="dis-3">不感兴趣</a>
+			{{?}}	
+		</li>
+	</script>
+<script type="template" id="side-0-tpl">
+	<li class="am-item">
+			<a id="{{= it.id}}" data-log={{!it.log}} target="_blank" href="{{= it.url}}" class="label-link am-link clearfix" data-newstype="{{=it.newsType}}" data-title="{{!it.title}}" data-source="{{=it.newsType}}" data-tpl="{{=it.tplType}}" data-clicktk="{{=it.clicktk}}" data-imptk="{{=it.imptk}}" data-ext="{{=it.dot||''}}" data-rc="{{=it.expId}}">
+				<div class="am-img-container">
+					<img class="am-img" src="{{= it.images || 'http://p0.qhimg.com/t01c8d837ba85a8eeb2.png'}}" onerror="src='http://p0.qhimg.com/t01c8d837ba85a8eeb2.png'"> 
+					{{? it.newsType == 'ads'}}
+						<span class="am-ads-tag"></span>
+					{{?}} 
+					{{? it.isVideo}}
+						<span class="am-icon-play"></span>
+					{{?}}
+				</div>
+				<div class="am-title-wrap">
+					<div class="am-title-container">
+						<span class="am-bd-title">{{!it.title}}</span>
+					</div>
+				</div>
+			</a>
+		</li>
+	</script>
+<!--/if-->
+<script type="text/javascript">
+	(function () {
+		document.addEventListener('click', function (e) {
+			var targetNode = e.target;
+			var searchSwith = $("#search-switch")[0];
+			if (targetNode.id != 'search-switch' && !searchSwith.contains(targetNode) && targetNode.parentNode
+				.id !=
+				'search-menu') {
+				$('#search-menu').removeClass("toggle-display");
+				document.querySelector(".search-arr >span").classList.remove("toggle-triangle");
+			}
+
+			var add_dot_con = $("#add-dot-container")[0];
+			var add_dot_btn = $("#dot_add")[0];
+			if (targetNode.id != "add-dot-container" && !add_dot_con.contains(targetNode) && targetNode.id !=
+				"dot_add" &&
+				(!add_dot_btn || (add_dot_btn && !add_dot_btn.contains(targetNode)))) {
+				add_dot_con.style.display = "none";
+			}
+			if (targetNode.classList.contains("page-switcher")) {
+				chrome.send("clearCacheNTP", ["card_change"]);
+			}
+		});
+
+		var $user_add_container = false;
+		document.addEventListener("keydown", function (e) {
+			var getID = e.target.id;
+			if ($user_add_container) {
+				$user_add_container = false;
+			} else {
+				if (e.keyCode == 9) {
+					e.preventDefault();
+					e.stopPropagation();
+					return false;
+				}
+			}
+		});
+
+		$("#user-add-container").on("keydown", function (e) {
+			$user_add_container = true;
+		});
+
+		window.onload = function (e) {
+			setTimeout(function () {
+				chrome.send("hiddeCacheNTP");
+			}, 200);
+		};
+		window.onresize = function (e) {
+			chrome.send("clearCacheNTP", ["resize"]);
+		};
+	})();
+	document.addEventListener('DOMContentLoaded', resetTilePagePaddingTop);
+</script>
+<script src="https://browser.360.cn/ee/newtab/iframe.js"></script>
+
+</html><script>// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+/**
+ * @fileoverview This file defines a singleton which provides access to all data
+ * that is available as soon as the page's resources are loaded (before DOM
+ * content has finished loading). This data includes both localized strings and
+ * any data that is important to have ready from a very early stage (e.g. things
+ * that must be displayed right away).
+ *
+ * Note that loadTimeData is not guaranteed to be consistent between page
+ * refreshes (https://crbug.com/740629) and should not contain values that might
+ * change if the page is re-opened later.
+ */
+
+// #import {assert} from './assert.m.js';
+// #import {parseHtmlSubset} from './parse_html_subset.m.js';
+
+/**
+ * @typedef {{
+ *   substitutions: (!Array<string>|undefined),
+ *   attrs: (!Array<string>|undefined),
+ *   tags: (!Array<string>|undefined),
+ * }}
+ */
+/* #export */ let SanitizeInnerHtmlOpts;
+
+// eslint-disable-next-line no-var
+/* #export */ /** @type {!LoadTimeData} */ var loadTimeData;
+
+// Expose this type globally as a temporary work around until
+// https://github.com/google/closure-compiler/issues/544 is fixed.
+/** @constructor */
+function LoadTimeData(){}
+
+(function() {
+  'use strict';
+
+  LoadTimeData.prototype = {
+    /**
+     * Sets the backing object.
+     *
+     * Note that there is no getter for |data_| to discourage abuse of the form:
+     *
+     *     var value = loadTimeData.data()['key'];
+     *
+     * @param {Object} value The de-serialized page data.
+     */
+    set data(value) {
+      expect(!this.data_, 'Re-setting data.');
+      this.data_ = value;
+    },
+
+    /**
+     * Returns a JsEvalContext for |data_|.
+     * @returns {JsEvalContext}
+     */
+    createJsEvalContext() {
+      return new JsEvalContext(this.data_);
+    },
+
+    /**
+     * @param {string} id An ID of a value that might exist.
+     * @return {boolean} True if |id| is a key in the dictionary.
+     */
+    valueExists(id) {
+      return id in this.data_;
+    },
+
+    /**
+     * Fetches a value, expecting that it exists.
+     * @param {string} id The key that identifies the desired value.
+     * @return {*} The corresponding value.
+     */
+    getValue(id) {
+      expect(this.data_, 'No data. Did you remember to include strings.js?');
+      const value = this.data_[id];
+      expect(typeof value !== 'undefined', 'Could not find value for ' + id);
+      return value;
+    },
+
+    /**
+     * As above, but also makes sure that the value is a string.
+     * @param {string} id The key that identifies the desired string.
+     * @return {string} The corresponding string value.
+     */
+    getString(id) {
+      const value = this.getValue(id);
+      expectIsType(id, value, 'string');
+      return /** @type {string} */ (value);
+    },
+
+    /**
+     * Returns a formatted localized string where $1 to $9 are replaced by the
+     * second to the tenth argument.
+     * @param {string} id The ID of the string we want.
+     * @param {...(string|number)} var_args The extra values to include in the
+     *     formatted output.
+     * @return {string} The formatted string.
+     */
+    getStringF(id, var_args) {
+      const value = this.getString(id);
+      if (!value) {
+        return '';
+      }
+
+      const args = Array.prototype.slice.call(arguments);
+      args[0] = value;
+      return this.substituteString.apply(this, args);
+    },
+
+    /**
+     * Make a string safe for use with with Polymer bindings that are
+     * inner-h-t-m-l (or other innerHTML use).
+     * @param {string} rawString The unsanitized string.
+     * @param {SanitizeInnerHtmlOpts=} opts Optional additional allowed tags and
+     *     attributes.
+     * @return {string}
+     */
+    sanitizeInnerHtml(rawString, opts) {
+      opts = opts || {};
+      return parseHtmlSubset('<b>' + rawString + '</b>', opts.tags, opts.attrs)
+          .firstChild.innerHTML;
+    },
+
+    /**
+     * Returns a formatted localized string where $1 to $9 are replaced by the
+     * second to the tenth argument. Any standalone $ signs must be escaped as
+     * $$.
+     * @param {string} label The label to substitute through.
+     *     This is not an resource ID.
+     * @param {...(string|number)} var_args The extra values to include in the
+     *     formatted output.
+     * @return {string} The formatted string.
+     */
+    substituteString(label, var_args) {
+      const varArgs = arguments;
+      return label.replace(/\$(.|$|\n)/g, function(m) {
+        assert(m.match(/\$[$1-9]/), 'Unescaped $ found in localized string.');
+        return m === '$$' ? '$' : varArgs[m[1]];
+      });
+    },
+
+    /**
+     * Returns a formatted string where $1 to $9 are replaced by the second to
+     * tenth argument, split apart into a list of pieces describing how the
+     * substitution was performed. Any standalone $ signs must be escaped as $$.
+     * @param {string} label A localized string to substitute through.
+     *     This is not an resource ID.
+     * @param {...(string|number)} var_args The extra values to include in the
+     *     formatted output.
+     * @return {!Array<!{value: string, arg: (null|string)}>} The formatted
+     *     string pieces.
+     */
+    getSubstitutedStringPieces(label, var_args) {
+      const varArgs = arguments;
+      // Split the string by separately matching all occurrences of $1-9 and of
+      // non $1-9 pieces.
+      const pieces = (label.match(/(\$[1-9])|(([^$]|\$([^1-9]|$))+)/g) ||
+                      []).map(function(p) {
+        // Pieces that are not $1-9 should be returned after replacing $$
+        // with $.
+        if (!p.match(/^\$[1-9]$/)) {
+          assert(
+              (p.match(/\$/g) || []).length % 2 === 0,
+              'Unescaped $ found in localized string.');
+          return {value: p.replace(/\$\$/g, '$'), arg: null};
+        }
+
+        // Otherwise, return the substitution value.
+        return {value: varArgs[p[1]], arg: p};
+      });
+
+      return pieces;
+    },
+
+    /**
+     * As above, but also makes sure that the value is a boolean.
+     * @param {string} id The key that identifies the desired boolean.
+     * @return {boolean} The corresponding boolean value.
+     */
+    getBoolean(id) {
+      const value = this.getValue(id);
+      expectIsType(id, value, 'boolean');
+      return /** @type {boolean} */ (value);
+    },
+
+    /**
+     * As above, but also makes sure that the value is an integer.
+     * @param {string} id The key that identifies the desired number.
+     * @return {number} The corresponding number value.
+     */
+    getInteger(id) {
+      const value = this.getValue(id);
+      expectIsType(id, value, 'number');
+      expect(value === Math.floor(value), 'Number isn\'t integer: ' + value);
+      return /** @type {number} */ (value);
+    },
+
+    /**
+     * Override values in loadTimeData with the values found in |replacements|.
+     * @param {Object} replacements The dictionary object of keys to replace.
+     */
+    overrideValues(replacements) {
+      expect(
+          typeof replacements === 'object',
+          'Replacements must be a dictionary object.');
+      for (const key in replacements) {
+        this.data_[key] = replacements[key];
+      }
+    }
+  };
+
+  /**
+   * Checks condition, displays error message if expectation fails.
+   * @param {*} condition The condition to check for truthiness.
+   * @param {string} message The message to display if the check fails.
+   */
+  function expect(condition, message) {
+    if (!condition) {
+      console.error(
+          'Unexpected condition on ' + document.location.href + ': ' + message);
+    }
+  }
+
+  /**
+   * Checks that the given value has the given type.
+   * @param {string} id The id of the value (only used for error message).
+   * @param {*} value The value to check the type on.
+   * @param {string} type The type we expect |value| to be.
+   */
+  function expectIsType(id, value, type) {
+    expect(
+        typeof value === type, '[' + value + '] (' + id + ') is not a ' + type);
+  }
+
+  expect(!loadTimeData, 'should only include this file once');
+  loadTimeData = new LoadTimeData;
+
+  // Expose |loadTimeData| directly on |window|. This is only necessary by the
+  // auto-generated load_time_data.m.js, since within a JS module the scope is
+  // local.
+  window.loadTimeData = loadTimeData;
+})();
+</script><script>loadTimeData.data = {"Hao360":"分类导航","RecentMenuEmpty":"(无)","ToFullWindow":"铺满整个浏览器","ToNTP":"铺满新标签页","anim":true,"appDefaultPageName":"应用","appInstallHintText":"添加更多应用","appcreateshortcut":"创建快捷方式…","appdetails":"在 Chrome 网上应用店中查看","appdisablenotifications":"Disable notifications","applaunchtypefullscreen":"以全屏模式打开","applaunchtypepinned":"在固定标签页中打开","applaunchtyperegular":"在常规标签页中打开","applaunchtypewindow":"在窗口中打开","appoptions":"选项","apps_page_id":2048,"appuninstall":"删除","attributionintro":"","bookmarkbarattached":true,"cleanrestore_list":"清空撤销列表","editAddUrl":"添加网址","editCancel":"取消","editCurrentOpened":"当前打开","editInputTitle":"请输入标题","editInputUrl":"请输入网址","editOK":"确认","editThis":"编辑网址","editTitle":"标题：","editUrl":"网址：","enableHotSuggestion":true,"enableNewBookmarkApps":true,"extensionslink":"https://ext.chrome.360.cn/webstore?hl=zh-CN","fontfamily":"'Segoe UI',Arial,'Microsoft Yahei',sans-serif","fontsize":"75%","hao360":false,"hasattribution":false,"isDiscoveryInNTPEnabled":false,"isSwipeTrackingFromScrollEventsEnabled":false,"language":"zh","learnMore":"了解详情","learn_more":"了解详情","most":true,"mostVisitedCount":12,"mostVisitedPageCount0":"0(无)","most_visited_page_id":1024,"mostvisited":"常去网站","nav_page_id":15360,"page_switcher_change_title":"转到“$1”","page_switcher_same_title":"更多“$1”","pinthumbnailtooltip":"在本网页上固定显示","removethumbnailtooltip":"不要在本页上显示","restoreThumbnailsShort":"全部恢复","selectLocalImage":"选择本机图片","showAppLauncherPromo":false,"showApps":true,"showMostvisited":true,"showOtherSessionsMenu":true,"showRecentlyClosed":true,"showSearchEngineBar":true,"showWebStoreIcon":true,"shown_page_index":0,"shown_page_type":1024,"syncLinkText":"高级设置","syncpromotext":"登录$1","textdirection":"ltr","themegravity":"","thumbOpValue":5,"thumbnailremovednotification":"已删除缩略图。","tile_grid_screenreader_accessible_description":"使用左右箭头键进行导航。","title":"新标签页","undothumbnailremove":"撤消","unpinthumbnailtooltip":"不在本页上固定显示","viewfullhistory":"查看完整历史记录","webStoreLink":"https://ext.chrome.360.cn/webstore?hl=zh-CN","webStoreTitle":"Chrome 网上应用店","webStoreTitleShort":"Chrome 网上应用店"};</script><script>// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+/** @typedef {Document|DocumentFragment|Element} */
+let ProcessingRoot;
+
+/**
+ * @fileoverview This is a simple template engine inspired by JsTemplates
+ * optimized for i18n.
+ *
+ * It currently supports three handlers:
+ *
+ *   * i18n-content which sets the textContent of the element.
+ *
+ *     <span i18n-content="myContent"></span>
+ *
+ *   * i18n-options which generates <option> elements for a <select>.
+ *
+ *     <select i18n-options="myOptionList"></select>
+ *
+ *   * i18n-values is a list of attribute-value or property-value pairs.
+ *     Properties are prefixed with a '.' and can contain nested properties.
+ *
+ *     <span i18n-values="title:myTitle;.style.fontSize:fontSize"></span>
+ *
+ * This file is a copy of i18n_template.js, with minor tweaks to support using
+ * load_time_data.js. It should replace i18n_template.js eventually.
+ */
+
+// eslint-disable-next-line no-var
+var i18nTemplate = (function() {
+  /**
+   * This provides the handlers for the templating engine. The key is used as
+   * the attribute name and the value is the function that gets called for every
+   * single node that has this attribute.
+   * @type {!Object}
+   */
+  const handlers = {
+    /**
+     * This handler sets the textContent of the element.
+     * @param {!HTMLElement} element The node to modify.
+     * @param {string} key The name of the value in |data|.
+     * @param {!LoadTimeData} data The data source to draw from.
+     * @param {!Set<ProcessingRoot>} visited
+     */
+    'i18n-content'(element, key, data, visited) {
+      element.textContent = data.getString(key);
+    },
+
+    /**
+     * This is used to set HTML attributes and DOM properties. The syntax is:
+     *   attributename:key;
+     *   .domProperty:key;
+     *   .nested.dom.property:key
+     * @param {!HTMLElement} element The node to modify.
+     * @param {string} attributeAndKeys The path of the attribute to modify
+     *     followed by a colon, and the name of the value in |data|.
+     *     Multiple attribute/key pairs may be separated by semicolons.
+     * @param {!LoadTimeData} data The data source to draw from.
+     * @param {!Set<ProcessingRoot>} visited
+     */
+    'i18n-values'(element, attributeAndKeys, data, visited) {
+      const parts = attributeAndKeys.replace(/\s/g, '').split(/;/);
+      parts.forEach(function(part) {
+        if (!part) {
+          return;
+        }
+
+        const attributeAndKeyPair = part.match(/^([^:]+):(.+)$/);
+        if (!attributeAndKeyPair) {
+          throw new Error('malformed i18n-values: ' + attributeAndKeys);
+        }
+
+        const propName = attributeAndKeyPair[1];
+        const propExpr = attributeAndKeyPair[2];
+
+        const value = data.getValue(propExpr);
+
+        // Allow a property of the form '.foo.bar' to assign a value into
+        // element.foo.bar.
+        if (propName[0] === '.') {
+          const path = propName.slice(1).split('.');
+          let targetObject = element;
+          while (targetObject && path.length > 1) {
+            targetObject = targetObject[path.shift()];
+          }
+          if (targetObject) {
+            targetObject[path] = value;
+            // In case we set innerHTML (ignoring others) we need to recursively
+            // check the content.
+            if (path[0] === 'innerHTML') {
+              for (let i = 0; i < element.children.length; ++i) {
+                processWithoutCycles(element.children[i], data, visited, false);
+              }
+            }
+          }
+        } else {
+          element.setAttribute(propName, /** @type {string} */ (value));
+        }
+      });
+    }
+  };
+
+  const prefixes = [''];
+
+  const attributeNames = Object.keys(handlers);
+  const selector = prefixes
+                       .map(function(prefix) {
+                         return prefix + '[' +
+                             attributeNames.join('], ' + prefix + '[') + ']';
+                       })
+                       .join(', ');
+
+  /**
+   * Processes a DOM tree using a |data| source to populate template values.
+   * @param {!ProcessingRoot} root The root of the DOM tree to process.
+   * @param {!LoadTimeData} data The data to draw from.
+   */
+  function process(root, data) {
+    processWithoutCycles(root, data, new Set(), true);
+  }
+
+  /**
+   * Internal process() method that stops cycles while processing.
+   * @param {!ProcessingRoot} root
+   * @param {!LoadTimeData} data
+   * @param {!Set<ProcessingRoot>} visited Already visited roots.
+   * @param {boolean} mark Whether nodes should be marked processed.
+   */
+  function processWithoutCycles(root, data, visited, mark) {
+    if (visited.has(root)) {
+      // Found a cycle. Stop it.
+      return;
+    }
+
+    // Mark the node as visited before recursing.
+    visited.add(root);
+
+    const importLinks = root.querySelectorAll('link[rel=import]');
+    for (let i = 0; i < importLinks.length; ++i) {
+      const importLink = /** @type {!HTMLLinkElement} */ (importLinks[i]);
+      if (!importLink.import) {
+        // Happens when a <link rel=import> is inside a <template>.
+        // TODO(dbeam): should we log an error if we detect that here?
+        continue;
+      }
+      processWithoutCycles(importLink.import, data, visited, mark);
+    }
+
+    const templates = root.querySelectorAll('template');
+    for (let i = 0; i < templates.length; ++i) {
+      const template = /** @type {HTMLTemplateElement} */ (templates[i]);
+      if (!template.content) {
+        continue;
+      }
+      processWithoutCycles(template.content, data, visited, mark);
+    }
+
+    const isElement = root instanceof Element;
+    if (isElement && root.webkitMatchesSelector(selector)) {
+      processElement(/** @type {!Element} */ (root), data, visited);
+    }
+
+    const elements = root.querySelectorAll(selector);
+    for (let i = 0; i < elements.length; ++i) {
+      processElement(elements[i], data, visited);
+    }
+
+    if (mark) {
+      const processed = isElement ? [root] : root.children;
+      if (processed) {
+        for (let i = 0; i < processed.length; ++i) {
+          processed[i].setAttribute('i18n-processed', '');
+        }
+      }
+    }
+  }
+
+  /**
+   * Run through various [i18n-*] attributes and populate.
+   * @param {!Element} element
+   * @param {!LoadTimeData} data
+   * @param {!Set<ProcessingRoot>} visited
+   */
+  function processElement(element, data, visited) {
+    for (let i = 0; i < attributeNames.length; i++) {
+      const name = attributeNames[i];
+      const attribute = element.getAttribute(name);
+      if (attribute !== null) {
+        handlers[name](element, attribute, data, visited);
+      }
+    }
+  }
+
+  return {process: process};
+}());
+
+// Copyright 2017 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+i18nTemplate.process(document, loadTimeData);
+
+</script>
